@@ -1,8 +1,83 @@
-# Exploratory-Analysis-of-Polluted-Data
-Performing Exploratory Data Analysis (EDA) on a polluted dataset.
+## Exploratory Data Analysis (EDA) of Polluted Data
+
+A comprehensive EDA pipeline that cleans and analyzes a synthetically polluted dataset, demonstrating common data quality issues and their solutions.
+
+### Features
+
+- Handles missing values, outliers, and inconsistent data types
+- Visualizes distributions and relationships
+- Performs feature encoding and scaling
+- Complete logging of all transformation steps
+- Outputs cleaned dataset and visualizations
+
+### Data Quality Issues Handled
 
 
-### 📝 Logging Output 
+| Issue Type          | Examples in Dataset               | Solution Applied                       |
+|---------------------|-----------------------------------|----------------------------------------|
+| Missing Values      | NaN in Age, Salary, Department    | Median imputation, fill with 'Unknown' |
+| Invalid Data Types  | String 'thirty' in Age column     | Coercion to numeric                    |
+| Outliers            | Age=150, Salary=9,999,999         | IQR-based capping                      |
+| Inconsistent Casing | 'IT' vs 'it' in Department        | Case standardization                   |
+| Duplicate Records   | ID=2 appears twice                | Deduplication                          |
+
+### Sample Visualizations
+
+### Age Distribution
+![Age Histogram](age_histogram.png)
+
+### Salary Distribution
+![Salary Box Plot](salary_box_plot.png)
+
+
+### Technical Implementation
+
+```python
+# Key cleaning steps example:
+df['Age'] = pd.to_numeric(df['Age'], errors='coerce')  # Handle string values
+df['Age'] = df['Age'].fillna(df['Age'].median())       # Impute missing values
+```
+
+### Outlier handling using IQR
+Q1 = df['Salary'].quantile(0.25)
+
+Q3 = df['Salary'].quantile(0.75)
+
+IQR = Q3 - Q1
+
+upper_bound = Q3 + 1.5*IQR
+
+df.loc[df['Salary'] > upper_bound, 'Salary'] = upper_bound
+
+### File Structure
+
+Exploratory-Analysis-of-Polluted-Data/
+├── eda_step_by_step.py       # Main EDA pipeline
+├── utils.py                  # Helper functions
+├── logging_config.py         # Logging setup
+├── polluted_dataset.csv      # Raw polluted data
+├── cleaned_polluted_data.csv # Processed output
+├── age_histogram.png         # Visualization
+└── salary_box_plot.png       # Visualization
+
+### Getting Started
+
+- Clone the repository
+
+```bash
+git clone https://github.com/yourusername/Exploratory-Analysis-of-Polluted-Data.git
+```
+- Install requirements
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn
+```
+- Run the python script
+```bash
+python eda_step_by_step.py
+```
+
+
+### Logging Output 
 
 <pre>
 
@@ -213,3 +288,7 @@ Cleaned Dataset:
 --Note-- The dataset is now clearned: No duplicates, no missing values, outliers capped, consistent types and scaled features.
 
 </pre>
+
+### License
+
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0). 
