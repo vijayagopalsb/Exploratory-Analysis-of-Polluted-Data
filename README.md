@@ -54,6 +54,7 @@ df.loc[df['Salary'] > upper_bound, 'Salary'] = upper_bound
 
 ### File Structure
 
+<pre>
 Exploratory-Analysis-of-Polluted-Data/
 ├── eda_step_by_step.py       # Main EDA pipeline
 ├── utils.py                  # Helper functions
@@ -62,6 +63,7 @@ Exploratory-Analysis-of-Polluted-Data/
 ├── cleaned_polluted_data.csv # Processed output
 ├── age_histogram.png         # Visualization
 └── salary_box_plot.png       # Visualization
+</pre>
 
 ### Getting Started
 
