@@ -29,6 +29,9 @@ A comprehensive EDA pipeline that cleans and analyzes a synthetically polluted d
 ### Salary Distribution
 ![Salary Box Plot](salary_box_plot.png)
 
+### Heat Map of Numerical data types
+![Heat Map Plot](heat_map.png.png)
+
 
 ### Technical Implementation
 
